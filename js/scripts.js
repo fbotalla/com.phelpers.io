@@ -71,6 +71,10 @@
             });
         });
 
+    $(document).on("click", "#privacy-pdf", function (){
+        viewPdfBootbox("https://firebasestorage.googleapis.com/v0/b/phelpers-48992.appspot.com/o/Legal%20Documents%2FPrivacy.pdf?alt=media&token=da3bf24e-78de-4d64-8692-d47aa1ab286d")
+    })
+
 
     })(jQuery); // End of use strict
 
