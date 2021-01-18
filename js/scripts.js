@@ -71,11 +71,46 @@
             });
         });
 
-    $(document).on("click", "#privacy-pdf", function (){
-        viewPdfBootbox("https://firebasestorage.googleapis.com/v0/b/phelpers-48992.appspot.com/o/Legal%20Documents%2FPrivacy.pdf?alt=media&token=da3bf24e-78de-4d64-8692-d47aa1ab286d")
+    $(document).on("click", "#privacy-pdf", function () {
+        openBootboxPdf("privacy")
+    })
+
+    $(document).on("click", "#terms-pdf", function () {
+        openBootboxPdf("terms")
+    })
+
+    $(document).on("click", "#guidelines-pdf", function () {
+        openBootboxPdf("guidelines")
     })
 
 
     })(jQuery); // End of use strict
+
+function openBootboxPdf(topic){
+    bootbox.dialog({
+        size:"xl",
+        message:'<div id="open-pdf" style="height: 600px"></div>'
+    })
+    initPdf(topic)
+}
+
+function initPdf(topic){
+    let url = ""
+    switch (topic) {
+        case "privacy":
+            url = "https://firebasestorage.googleapis.com/v0/b/phelpers-48992.appspot.com/o/Legal%20Documents%2FPrivacy.pdf?alt=media&token=da3bf24e-78de-4d64-8692-d47aa1ab286d";
+            break;
+        case "terms":
+            url = "https://firebasestorage.googleapis.com/v0/b/phelpers-48992.appspot.com/o/Legal%20Documents%2FTerms.pdf?alt=media&token=097aa352-ee3f-435c-9b5f-54f8521fd664";
+            break;
+        case "guidelines":
+            url = "https://firebasestorage.googleapis.com/v0/b/phelpers-48992.appspot.com/o/Legal%20Documents%2FGuidelines.pdf?alt=media&token=0d366ba3-e2ad-465e-a2f6-5ab76f13002d";
+            break;
+
+    }
+
+    let $container = $("#open-pdf");
+    PDFObject.embed(url,$container )
+}
 
 
